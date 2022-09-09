@@ -1,0 +1,30 @@
+/* Create table about the people and what they do here */
+
+CREATE TABLE Actors (id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, Age INTEGER);
+
+INSERT INTO Actors (Name, age) VALUES ("Emily Blunt", 39);
+INSERT INTO Actors (Name, age) VALUES ("John Krasinski", 42);
+INSERT INTO Actors (Name, age) VALUES ("Blake Lively", 35);
+INSERT INTO Actors (Name, age) VALUES ("Ryan Reynolds", 45);
+
+CREATE TABLE Spouse (persons_id INTEGER PRIMARY KEY, name TEXT);
+
+INSERT INTO Spouse (persons_id, name) VALUES (2, "Emily Blunt");
+INSERT INTO Spouse (persons_id, name) VALUES (4, "Blake Lively");
+
+CREATE TABLE Movies (persons_id INTEGER PRIMARY KEY, Movie_name TEXT);
+
+INSERT INTO Movies (persons_id, movie_name) VALUES (2, "The Quiet Place");
+INSERT INTO Movies (persons_id, movie_name) VALUES (1, "The Quiet Place");
+INSERT INTO Movies (persons_id, movie_name) VALUES (3, "Green Lantern");
+INSERT INTO Movies (persons_id, movie_name) VALUES
+(4, "Green Lantern");
+
+/* Selected the actors' name, their spouse, and the movie they shared together by combining three relational tables. */
+
+SELECT actors.name, spouse.name as Spouse, movies.movie_name
+FROM actors
+JOIN spouse
+ON actors.id = spouse.persons_id
+JOIN Movies
+ON actors.id = movies.persons_id;
